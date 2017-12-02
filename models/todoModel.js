@@ -3,11 +3,11 @@ var Schema = mongoose.Schema;
 
 var todoSchema = new Schema({
     username: String,
-    todo: String,
+    action: String,
     isDone: Boolean,
     hasAttachment: Boolean
 });
 
 var ToDoModel = mongoose.model("ToDo", todoSchema);
 
-model.exports = ToDoModel;
+module.exports = ToDoModel;

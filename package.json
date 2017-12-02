@@ -9,7 +9,9 @@
     "express": "^4.16.2",
     "mongoose": "^4.13.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
