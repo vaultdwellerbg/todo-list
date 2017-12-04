@@ -1,7 +1,7 @@
 var ToDoModel = require("../models/todoModel");
 var bodyParser = require("body-parser");
 
-var updateTodo = function(reqBody){
+var updateTodo = function(reqBody, res){
     ToDoModel.findByIdAndUpdate(reqBody.id, {
         action: reqBody.action,
         isDone: reqBody.isDone,
@@ -13,7 +13,7 @@ var updateTodo = function(reqBody){
     });
 }
 
-var addTodo = function(reqBody){
+var addTodo = function(reqBody, res){
     var newToDo = new ToDoModel({
         username: reqBody.username,
         action: reqBody.action,
@@ -22,7 +22,7 @@ var addTodo = function(reqBody){
     });
 
     newToDo.save(function (err, data) {
-        if (data) throw err;
+        if (err) throw err;
 
         res.send("Successfully created");
     });
@@ -50,9 +50,9 @@ module.exports = function (app) {
 
     app.post("/api/todo/", function(req, res){
         if(req.body.id) {
-            updateTodo(req.body);
+            updateTodo(req.body, res);
         } else {
-            addTodo(req.body);
+            addTodo(req.body, res);
         }
     });
 
